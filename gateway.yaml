@@ -1,0 +1,36 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:9093/eureka/
+    fetch-registry: true
+    register-with-eureka: true
+
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: offres
+          uri: lb://offres
+          predicates:
+            - Path=/offres/**
+          filters:
+            - RewritePath=/offres/(?<path>.*), /$\{path}
+        - id: discovery
+          uri: lb://discovery
+          predicates:
+            - Path=/discovery/**
+          filters:
+            - RewritePath=/discovery/(?<path>.*), /$\{path}
+       
+management:
+  endpoint:
+    gateway:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"
