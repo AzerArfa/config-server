@@ -16,7 +16,7 @@ spring:
         - id: offres
           uri: lb://offres
           predicates:
-            - Path=/offres/**
+            - Path=/api/v1/offres/**
           filters:
             - RewritePath=/offres/(?<path>.*), /$\{path}
         - id: discovery
