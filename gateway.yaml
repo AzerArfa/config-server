@@ -25,12 +25,12 @@ spring:
             - Path=/discovery/**
           filters:
             - RewritePath=/discovery/(?<path>.*), /$\{path}
-         - id: users
-          uri: lb://users
+         - id: users-microservice
+          uri: lb://users-microservice
           predicates:
-            - Path=/users/**
+            - Path=/users-microservice/**
           filters:
-            - RewritePath=/users/(?<path>.*), /$\{path}
+            - RewritePath=/users-microservice/(?<path>.*), /$\{path}
        
        
 management:
