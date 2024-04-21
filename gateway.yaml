@@ -13,12 +13,25 @@ spring:
           enabled: true
           lower-case-service-id: true
       routes:
-        - id: offres
+        - id: offres_all
           uri: lb://offres
           predicates:
-            - Path=/api/v1/offres/**
-          filters:
-            - RewritePath=/offres/(?<path>.*), /$\{path}
+            - Path=/api/v1/offres/all
+        - id: offres_add
+          uri: lb://offres
+          predicates:
+            - Path=/api/v1/offres/addoffre
+            - Method=POST
+        - id: offres_delete
+          uri: lb://offres
+          predicates:
+            - Path=/api/v1/offres/deleteoffre/**
+            - Method=DELETE
+        - id: offres_update
+          uri: lb://offres
+          predicates:
+            - Path=/api/v1/offres/updateoffre
+            - Method=PUT
         - id: discovery
           uri: lb://discovery
           predicates:
@@ -28,19 +41,19 @@ spring:
         - id: signup_route
           uri: lb://users-microservice
           predicates:
-            - Path=/sign-up
+            - Path=/sign-up/**
           filters:
             - RewritePath=/sign-up/(?<path>.*), /$\{path}
         - id: authenticate_route
           uri: lb://users-microservice
           predicates:
-            - Path=/authenticate
+            - Path=/authenticate/**
           filters:
             - RewritePath=/authenticate/(?<path>.*), /$\{path}
         - id: update_profile_route
           uri: lb://users-microservice
           predicates:
-            - Path=/api/update
+            - Path=/api/update/**
           filters:
             - RewritePath=/api/update/(?<path>.*), /$\{path}
         - id: get_user_by_id_route
@@ -48,4 +61,4 @@ spring:
           predicates:
             - Path=/api/user/**
           filters:
-            - RewritePath=/api/user/(?<path>.*),
+            - RewritePath=/api/user/(?<path>.*), /$\{path}
