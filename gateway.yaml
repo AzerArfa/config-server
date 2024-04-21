@@ -25,7 +25,40 @@ spring:
             - Path=/discovery/**
           filters:
             - RewritePath=/discovery/(?<path>.*), /$\{path}
-        
+         - id: signup_route
+          uri: lb://users-microservice
+          predicates:
+            - Path=/sign-up
+          filters:
+            - RewritePath=/sign-up/(?<path>.*), /$\{path}
+
+        - id: authenticate_route
+          uri: lb://users-microservice
+          predicates:
+            - Path=/authenticate
+          filters:
+            - RewritePath=/authenticate/(?<path>.*), /$\{path}
+
+        - id: update_profile_route
+          uri: lb://users-microservice
+          predicates:
+            - Path=/api/update
+          filters:
+            - RewritePath=/api/update/(?<path>.*), /$\{path}
+
+        - id: get_user_by_id_route
+          uri: lb://users-microservice
+          predicates:
+            - Path=/api/user/**
+          filters:
+            - RewritePath=/api/user/(?<path>.*), /$\{path}
+
+        - id: update_password_route
+          uri: lb://users-microservice
+          predicates:
+            - Path=/api/updatePassword
+          filters:
+            - RewritePath=/api/updatePassword/(?<path>.*), /$\{path}
        
        
 management:
