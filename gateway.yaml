@@ -25,6 +25,13 @@ spring:
             - Path=/discovery/**
           filters:
             - RewritePath=/discovery/(?<path>.*), /$\{path}
+         - id: users
+          uri: lb://users
+          predicates:
+            - Path=/users/**
+          filters:
+            - RewritePath=/users/(?<path>.*), /$\{path}
+       
        
 management:
   endpoint:
