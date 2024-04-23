@@ -35,6 +35,11 @@ spring:
           predicates:
             - Path=/sign-up
             - Method=POST
+        - id: utilisateur_liste
+          uri: lb://microservice-utilisateur
+          predicates:
+            - Path=/users
+            - Method=GET
         - id: discovery
           uri: lb://discovery
           predicates:
