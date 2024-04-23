@@ -4,6 +4,7 @@ spring:
       discovery:
         locator:
           enabled: true
+          uri: http://localhost:9093/eureka
           lower-case-service-id: true
       routes:
         - id: offres_all
