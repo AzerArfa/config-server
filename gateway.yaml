@@ -41,3 +41,8 @@ spring:
             - Path=/discovery/**
           filters:
             - RewritePath=/discovery/(?<path>.*), /$\{path}
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9093/eureka/
