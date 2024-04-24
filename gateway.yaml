@@ -25,21 +25,52 @@ spring:
           predicates:
             - Path=/api/v1/offres/updateoffre
             - Method=PUT
-        - id: utilisateur_authenticate
+        - id: user_all
           uri: lb://microservice-utilisateur
           predicates:
-            - Path=/authenticate
+            - Path=/all
+        - id: user_add
+          uri: lb://microservice-utilisateur
+          predicates:
+            - Path=/add
             - Method=POST
-        - id: utilisateur_signup
+        - id: user_add_role
           uri: lb://microservice-utilisateur
           predicates:
-            - Path=/sign-up
+            - Path=/addRole/{id}
             - Method=POST
-        - id: utilisateur_liste
+        - id: user_find_by_id
           uri: lb://microservice-utilisateur
           predicates:
-            - Path=/users
-            - Method=GET
+            - Path=/findUserById/{id}
+        - id: user_all_roles
+          uri: lb://microservice-utilisateur
+          predicates:
+            - Path=/allRoles
+        - id: user_find_role_by_id
+          uri: lb://microservice-utilisateur
+          predicates:
+            - Path=/findRoleById/{id}
+        - id: user_delete_by_id
+          uri: lb://microservice-utilisateur
+          predicates:
+            - Path=/deleteUserById/{id}
+            - Method=DELETE
+        - id: user_remove_role
+          uri: lb://microservice-utilisateur
+          predicates:
+            - Path=/removeRoleFromUer/{id}
+            - Method=POST
+        - id: user_register
+          uri: lb://microservice-utilisateur
+          predicates:
+            - Path=/register
+            - Method=POST
+        - id: user_verify
+          uri: lb://microservice-utilisateur
+          predicates:
+            - Path=/verify
+            - Method=POST
         - id: discovery
           uri: lb://discovery
           predicates:
