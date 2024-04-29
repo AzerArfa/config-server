@@ -24,6 +24,15 @@ spring:
           filters:
             - AuthenticationFilter
 
+        - id: r3
+          uri: http://localhost:8083/
+          predicates:
+            - Path=/superadmin/**
+          filters:
+            - AuthenticationFilter
+server:
+  port: 8080
+
 management:
   endpoints:
     web:
