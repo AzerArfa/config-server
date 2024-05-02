@@ -4,7 +4,7 @@ spring:
   cloud:
     gateway:
       default-filters:
-        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+        - DedupeResponseHeader=Access-Control-Allow-Credentials, Access-Control-Allow-Origin
       globalcors:
         corsConfigurations:
           '[/**]':
@@ -26,6 +26,8 @@ spring:
           uri: http://localhost:8081/
           predicates:
             - Path=/auth/**
+          filters:
+            - AuthenticationFilter
         - id: r2
           uri: http://localhost:8082/
           predicates:
@@ -38,6 +40,7 @@ spring:
             - Path=/superadmin/**
           filters:
             - AuthenticationFilter
+
 server:
   port: 8090
 
