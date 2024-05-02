@@ -26,6 +26,16 @@ spring:
           uri: http://localhost:8081/
           predicates:
             - Path=/auth/**
+        - id: makeadmin
+          uri: http://localhost:8081/
+          predicates:
+            - Path=/auth/make-admin/**
+          filters:
+            - AuthenticationFilter
+        - id: makeuser
+          uri: http://localhost:8081/
+          predicates:
+            - Path=/auth/make-user/**
           filters:
             - AuthenticationFilter
         - id: r2
