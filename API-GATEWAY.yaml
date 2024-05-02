@@ -22,25 +22,34 @@ spring:
               - Origin
             allowCredentials: true
       routes:
-        - id: r1
-          uri: http://localhost:8081/
+        - id: makeadmin
+          uri: http://localhost:8081
           predicates:
-            - Path=/auth/**
+            - Path=/auth/make-admin/**
           filters:
             - AuthenticationFilter
+        - id: makeuser
+          uri: http://localhost:8081
+          predicates:
+            - Path=/auth/make-user/**
+          filters:
+            - AuthenticationFilter
+        - id: r1
+          uri: http://localhost:8081
+          predicates:
+            - Path=/auth/**
         - id: r2
-          uri: http://localhost:8082/
+          uri: http://localhost:8082
           predicates:
             - Path=/offer/**
           filters:
             - AuthenticationFilter
         - id: r3
-          uri: http://localhost:8083/
+          uri: http://localhost:8083
           predicates:
             - Path=/superadmin/**
           filters:
             - AuthenticationFilter
-
 server:
   port: 8090
 
@@ -48,4 +57,4 @@ management:
   endpoints:
     web:
       exposure:
-        include: "*"
+        # Specify exposure configuration if necessary
