@@ -22,22 +22,12 @@ spring:
               - Origin
             allowCredentials: true
       routes:
-        - id: makeadmin
-          uri: http://localhost:8081
-          predicates:
-            - Path=/auth/make-admin/**
-          filters:
-            - AuthenticationFilter
-        - id: makeuser
-          uri: http://localhost:8081
-          predicates:
-            - Path=/auth/make-user/**
-          filters:
-            - AuthenticationFilter
         - id: r1
           uri: http://localhost:8081
           predicates:
             - Path=/auth/**
+          filters:
+            - AuthenticationFilter
         - id: r2
           uri: http://localhost:8082
           predicates:
