@@ -30,12 +30,16 @@ spring:
           uri: http://localhost:8082/
           predicates:
             - Path=/offer/**
+          filters:
+            - AuthenticationFilter
         - id: r3
           uri: http://localhost:8083/
           predicates:
             - Path=/superadmin/**
+          filters:
+            - AuthenticationFilter
 server:
-  port: 8080
+  port: 8090
 
 management:
   endpoints:
